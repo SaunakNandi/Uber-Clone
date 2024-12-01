@@ -38,6 +38,7 @@ if (!secretKey) {
 }
 
 userSchema.methods.generateAuthToken=function(){
+    console.log(this)
     const token=jwt.sign({_id:this._id},secretKey,{expiresIn:'24h'})
     return token
 }
