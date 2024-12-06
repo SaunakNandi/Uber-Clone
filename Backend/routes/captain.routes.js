@@ -9,6 +9,7 @@ router.post('/register',[
     // if min length is not 3 then give the message
     body('fullname.firstname').isLength({min:3}).withMessage('First name must be atleast 3 characters long'),
     body('password').isLength({min:6}).withMessage('Password must be atleast 6 characters long'),
+    body('mobile').isLength({min:10,max:10}).withMessage('Mobile no. should be active one'),
     // if min length is not 3 then give the message
     body('vehicle.color').isLength({min:3}).withMessage('Color must be atleast 3 characters long'),
     body('vehicle.plate').isLength({min:10,max:10}).withMessage('Plate no. should be of length 10 only'),
@@ -17,5 +18,15 @@ router.post('/register',[
 ],
     captainController.registerCaptain
 )
+
+router.post('/login',[
+        body('email').isEmail().withMessage('Invalid Email'),
+        body('password').isLength({min:6}).withMessage('Password Invalid'),
+    ],
+    captainController.loginCaptain
+)
+
+router.get('/profile',authMiddleware.authCaptain,captainController.getCaptainProfile)
+router.post('/logout',authMiddleware.authCaptain,captainController.logoutCaptain)
 
 module.exports=router

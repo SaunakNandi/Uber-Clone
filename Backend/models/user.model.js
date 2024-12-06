@@ -14,6 +14,12 @@ const userSchema=new mongoose.Schema({
             minlength:[3,'last name must be at least 3 characters long']
         }
     },
+    mobile:{
+        type:String,
+        required:true,
+        unique:true,
+        match:[mobileRegex,"Enter a valid mobile number"],
+    },
     email:{
         type:String,
         required:true,

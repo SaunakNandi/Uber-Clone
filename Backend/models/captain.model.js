@@ -3,6 +3,8 @@ const bcrypt=require('bcrypt')
 const jwt=require('jsonwebtoken')
 
 const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+const mobileRegex= /^[6-9]\d{9}$/
+
 const captainSchema=new mongoose.Schema({
     fullname:{
         firstname:{
@@ -14,6 +16,12 @@ const captainSchema=new mongoose.Schema({
             required:true,
             minLength:[3,"Lastname must be at least 3 characters long"]
         }
+    },
+    mobile:{
+        type:String,
+        required:true,
+        unique:true,
+        match:[mobileRegex,"Enter a valid mobile number"],
     },
     email:{
         type:String,
