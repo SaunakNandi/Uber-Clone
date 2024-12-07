@@ -17,12 +17,12 @@ const captainSchema=new mongoose.Schema({
             minLength:[3,"Lastname must be at least 3 characters long"]
         }
     },
-    mobile:{
-        type:String,
-        required:true,
-        unique:true,
-        match:[mobileRegex,"Enter a valid mobile number"],
-    },
+    // mobile:{
+    //     type:String,
+    //     // required:true,
+    //     unique:true,
+    //     // match:[mobileRegex,"Enter a valid mobile number"],
+    // },
     email:{
         type:String,
         required:true,
@@ -64,9 +64,9 @@ const captainSchema=new mongoose.Schema({
             maxLength:[10,"Enter plate no. correctly"],
             uppercase:true,
         },
-        model:{
-            type:String,
-        },
+        // model:{
+        //     type:String,
+        // },
         capacity:{
             type:Number,
             required:true,

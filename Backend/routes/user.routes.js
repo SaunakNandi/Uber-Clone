@@ -8,7 +8,7 @@ router.post('/register',[
     body('email').isEmail().withMessage('Invalid Email'),
     // if min length is not 3 then give the message
     body('fullname.firstname').isLength({min:3}).withMessage('First name must be atleast 3 characters long'),
-    body('mobile').isLength({min:10,max:10}).withMessage('Mobile no. should be active one'),
+    // body('mobile').isLength({min:10,max:10}).withMessage('Mobile no. should be active one'),
     body('password').isLength({min:6}).withMessage('Password must be atleast 6 characters long'),
 ], userController.registerUser // to perform any action on the validation failed by express-validator we do it inside controller
 )

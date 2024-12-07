@@ -2,6 +2,8 @@ const mongoose=require('mongoose')
 const bcrypt=require('bcrypt')
 const jwt=require('jsonwebtoken')
 
+const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+const mobileRegex= /^[6-9]\d{9}$/
 const userSchema=new mongoose.Schema({
     fullname:{
         firstname:{
@@ -14,16 +16,16 @@ const userSchema=new mongoose.Schema({
             minlength:[3,'last name must be at least 3 characters long']
         }
     },
-    mobile:{
-        type:String,
-        required:true,
-        unique:true,
-        match:[mobileRegex,"Enter a valid mobile number"],
-    },
+    // mobile:{
+    //     type:String,
+    //     unique:true,
+    //     // match:[mobileRegex,"Enter a valid mobile number"],
+    // },
     email:{
         type:String,
         required:true,
         unique:true,
+        match:[emailRegex,"Enter a valid email"],
         minlength:[12,'Email name must be at least 3 characters long']
     },
     password:{
@@ -34,7 +36,6 @@ const userSchema=new mongoose.Schema({
     socketId:{  // live tracking the location of captain
         type:String,
     },
-
 })
 
 const secretKey = process.env.JWT_SECRET;
