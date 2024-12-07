@@ -120,3 +120,8 @@
 .footer-base span{
   text-decoration: underline;
 }
+.vehicle-container{
+  display: flex;
+  gap: 1rem; /* Equivalent to gap-4 in Tailwind (4 * 0.25rem = 1rem) */
+  margin-bottom: 1rem; 
+}
