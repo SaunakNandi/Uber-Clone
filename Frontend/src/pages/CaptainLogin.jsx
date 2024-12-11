@@ -11,16 +11,19 @@ const CaptainLogin = () => {
   const {captain,setCaptain}=useContext(CaptainDataContext)
   const submit=async(e)=>{
     e.preventDefault()
+    console.log("clicked")
     const captainData={
       email,
       password
     }
+    console.log(captainData)
     const response=await axios.post(`${import.meta.env.VITE_BASE_URL}/captains/login`,captainData)
     if(response.status===200)
     {
+      console.log(response)
       const data=response.data
-      setCaptain(data.captain)
       localStorage.setItem('token',data.token)
+      setCaptain(data.captain)
       navigate('/captain-home')
     } 
     setEmail('')
