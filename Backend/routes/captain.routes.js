@@ -19,6 +19,7 @@ router.post('/register',[
     captainController.registerCaptain
 )
 
+<<<<<<< Updated upstream
 router.post('/login',[
         body('email').isEmail().withMessage('Invalid Email'),
         body('password').isLength({min:6}).withMessage('Password Invalid'),
@@ -26,6 +27,15 @@ router.post('/login',[
     captainController.loginCaptain
 )
 
+=======
+
+router.post('/login',[
+    body('email').isEmail().withMessage('Invalid Email'),
+    body('password').isLength({min:6}).withMessage('Password Invalid'),
+],
+captainController.loginCaptain
+)
+>>>>>>> Stashed changes
 router.get('/profile',authMiddleware.authCaptain,captainController.getCaptainProfile)
 router.post('/logout',authMiddleware.authCaptain,captainController.logoutCaptain)
 
