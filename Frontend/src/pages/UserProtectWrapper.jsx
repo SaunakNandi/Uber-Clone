@@ -20,7 +20,7 @@ const UserProtectWrapper = ({children}) => {
         const data=res.data
         if(res.status===200)
         {
-          console.log(res)
+          // console.log(res)
           setUser(data.user)
           setIsLoading(false)
         }

@@ -154,6 +154,7 @@
 }
 .captain-homescreen{
   height: 100vh;
+  overflow: hidden;
 }
 .first-view{
   position: fixed;
@@ -161,7 +162,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 95vw;
+  width: 93vw;
 }
 .first-view img{
   width: 64px;

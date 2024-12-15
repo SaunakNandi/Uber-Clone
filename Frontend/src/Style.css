@@ -212,5 +212,75 @@
 .captain-details p{
     font-size: small;
     color: darkgray;
-
+}
+.captain-riding{
+    height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+.image-box{
+    position: fixed;
+    padding: 24px;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 95vw;
+}
+.route-to-home{
+    height: 40px;
+    width: 40px;
+    border-right-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+}
+.route-to-home i{
+    font-weight: 500;
+    font-size: 18px;
+}
+.ride-panel{
+    height: 20%;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    background-color: rgb(238, 238, 150);
+    padding-top: 40px;
+}
+.ride-panel h5{
+    padding: 4px;
+    text-align: center;
+    width: 90%;
+    position: absolute;
+    top: 0;
+}
+.ride-panel button{
+    background-color: rgb(12, 170, 12);
+    color: #fff;
+    font-weight: 600;
+    padding: 12px 40px;
+    border-radius: 9999px;
+}
+.finishRide{
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+    bottom: 0;
+    transform: translateY(100%);
+    background-color: #fff;
+    padding: 40px 12px;
+    padding-top: 48px;
+}
+/* h-screen fixed w-screen top-0 z-[-1] */
+.livetracker{
+    height: 100vh;
+    position: fixed;
+    width: 90vw;
+    top: 0;
+    z-index: -1;
 }

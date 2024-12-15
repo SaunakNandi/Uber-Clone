@@ -97,7 +97,7 @@ const Home = () => {
   },[vehicleFound])
 
   useGSAP(function(){
-    if(setWaiting)
+    if(waiting)
     {
       gsap.to(captainRef.current,{
         transform:'translateY(0)'
@@ -109,7 +109,7 @@ const Home = () => {
         transform:'translateY(100%)'
       })
     }
-  },[setWaiting])
+  },[waiting])
   
   return (
     <div className='home-screen'>
