@@ -1,9 +1,6 @@
 const userModel=require('../models/user.model')
 const captainModel=require('../models/captain.model')
-<<<<<<< Updated upstream
 const bcrypt=require('bcrypt')
-=======
->>>>>>> Stashed changes
 const jwt=require('jsonwebtoken')
 const blackListTokenModel=require('../models/blackListToken.model')
 

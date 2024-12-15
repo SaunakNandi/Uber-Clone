@@ -64,12 +64,9 @@ const captainSchema=new mongoose.Schema({
             maxLength:[10,"Enter plate no. correctly"],
             uppercase:true,
         },
-<<<<<<< Updated upstream
         // model:{
         //     type:String,
         // },
-=======
->>>>>>> Stashed changes
         capacity:{
             type:Number,
             required:true,
