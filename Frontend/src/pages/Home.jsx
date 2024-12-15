@@ -17,6 +17,9 @@ const Home = () => {
   const [confirmedRidePanel,setConfirmedRidePanel]=useState(false)
   const [vehicleFound,setVehicleFound]=useState(false)
   const [waiting,setWaiting]=useState(false)
+  const [ pickupSuggestions, setPickupSuggestions ] = useState([])
+  const [ destinationSuggestions, setDestinationSuggestions ] = useState([])
+  const [ activeField, setActiveField ] = useState(null)
   const panelRef=useRef(null)
   const panelClose=useRef(null)
   const vehiclePanelOpenRef=useRef(null)
@@ -24,6 +27,34 @@ const Home = () => {
   const vehicleFoundRef=useRef(null)
   const captainRef=useRef(null)
 
+  const handlePickupChange = async (e) => {
+    try {
+        const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/maps/get-suggestions`, {
+            params: { input: e.target.value },
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+
+        })
+        setPickupSuggestions(response.data)
+    } catch {
+        // handle error
+    }
+}
+
+const handleDestinationChange = async (e) => {
+    try {
+        const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/maps/get-suggestions`, {
+            params: { input: e.target.value },
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        })
+        setDestinationSuggestions(response.data)
+    } catch {
+        // handle error
+    }
+}
   const submit=(e)=>{
     e.preventDefault()
   }
@@ -124,29 +155,49 @@ const Home = () => {
               setPanelOpen(false)
             }}><i className="ri-arrow-down-wide-line"></i></h5>
             <h4 className='trip-heading'>Find a trip</h4>
-            <form style={{maxWidth:'fit-content'}}
-            onSubmit={(e)=>{
+          <form style={{ maxWidth: 'fit-content' }}
+            onSubmit={(e) => {
               submit(e)
             }}>
-              <div className="liner"></div>
-              <input value={pickup} onChange={(e)=>{setPickup(e.target.value)}}
-               type="text" placeholder='Add a pick up location' className='trip-form-input'
-              style={{marginTop:'20px'}}
-              onClick={()=>{
+            <div className="liner"></div>
+            <input value={pickup}
+              onChange={(e) => {
+                setPickup(e.target.value)
+                handlePickupChange(e)
+              }}
+              type="text" placeholder='Add a pick up location' className='trip-form-input'
+              style={{ marginTop: '20px' }}
+              onClick={() => {
                 setPanelOpen(true)
-              }}/>
-              <input value={destination} onChange={(e)=>{setDestination(e.target.value)}}
-               type="text" placeholder='Add your destination' className='trip-form-input'
-              style={{marginTop:'20px'}}
-              onClick={()=>{
+                setActiveField('pickup')
+              }} />
+            <input value={destination}
+              onChange={(e) => {
+                setDestination(e.target.value)
+                handleDestinationChange(e)
+              }}
+              type="text" placeholder='Add your destination' className='trip-form-input'
+              style={{ marginTop: '20px' }}
+              onClick={() => {
                 setPanelOpen(true)
-              }}/>
-            </form>
+                setActiveField('destination')
+              }} />
+          </form>
+          <button
+            onClick={findTrip}
+            className='find-trip-button'>
+            Find Trip
+          </button>
           </div>
           <div className="trip-largebox" ref={panelRef}>
               <LocationSearchPanel 
-              setPanelOpen={setPanelOpen}
-              setvehiclePanelOpen={setvehiclePanelOpen}/>
+                suggestions={activeField === 'pickup' ? pickupSuggestions : destinationSuggestions}
+                setPanelOpen={setPanelOpen}
+                setvehiclePanelOpen={setvehiclePanelOpen}
+                setPickup={setPickup}
+                setDestination={setDestination}
+                activeField={activeField}
+              />
           </div>
         </div>
         <div className="ride-mode" ref={vehiclePanelOpenRef}>

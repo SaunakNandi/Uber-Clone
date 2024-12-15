@@ -36,6 +36,15 @@
     border-radius: 10px;
     width: 100%;
 }
+bg-black text-white px-4 py-2 rounded-lg mt-3 w-full
+.find-trip-button{
+    background-color: black;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 18px;
+    margin-top: 12px;
+    width: 100%;
+}
 .trip-smallbox{
     height:20%;
     padding: 24px;
